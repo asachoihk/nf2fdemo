@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionctrlService } from '../sessionctrl.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -9,28 +10,40 @@ import { SessionctrlService } from '../sessionctrl.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private ss: SessionctrlService,
-    private _snackBar: MatSnackBar,) { }
+  constructor(protected ss: SessionctrlService,
+    private _snackBar: MatSnackBar, ) { }
 
   ngOnInit() {
   }
 
+  getSocket() {
+    return this.ss;
+  }
+
   connect() {
     const roomid = this.ss.connect();
+    this.ss.getSocket().on("online", data =>{
+      this._snackBar.open('someone online', 'ok', {
+        duration: 1000,
+        verticalPosition: 'bottom'
+      }) 
+    })
     console.log({ roomid })
 
     const message = `Share following url to you customer:  ${window.location.href}#${roomid}&customer=1`;
-    const action = "done"
+    const action = "Open"
     this._snackBar.open(message, action, {
       duration: 10000,
-      verticalPosition: 'top'
-    }).onAction().subscribe(()=>{
+      verticalPosition: 'bottom'
+    }).onAction().subscribe(() => {
       window.open(`${window.location.href}#${roomid}&customer=1`, '_blank');
-      window.open(`https://xgom8.sse.codesandbox.io/close`, '_blank');
     });
   }
+
   start() {
-    window.open('https://xgom8.sse.codesandbox.io/','_blank');
+    const serverUrl = environment.socketConfig.url;
+
+    window.open(serverUrl, '_blank');
   }
 
 }

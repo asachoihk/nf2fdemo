@@ -22,4 +22,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  isMobile() {
+    return window.innerWidth < 1024 ? 'none' : '';
+  }
+
 }

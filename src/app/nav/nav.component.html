@@ -1,8 +1,6 @@
 <ul>
     <li *ngFor="let n of navs">
         <span><a [routerLink]="n.path" (click)="nav(n.path)">{{n.name}}</a></span>
-        <span class="tickicon"><i class="material-icons">check_circle</i></span>
+        <span class="tickicon"><i class="material-icons">{{n.icon}}</i></span>
     </li>
-
-
 </ul>

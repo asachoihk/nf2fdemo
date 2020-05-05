@@ -3,13 +3,13 @@
         <div>
             <mat-icon (click)="openMenu();">dehaze</mat-icon>
         </div>
-        <div>
+        <div [ngStyle]="{display:isMobile()}">
             <i class="material-icons" style="color:green;font-size:50px;">brightness_1</i>
         </div>
-        <div style="flex: 1 1 auto;">Application > LaVie 5 (LDB)
-            {{clientMode?' (Customer Mode)':''}}</div>
-        <div><i class="material-icons">save</i></div>
-        <div><i class="material-icons">swap_horiz</i></div>
-        <div><i class="material-icons">note_add</i></div>
+        <div style="flex: 1 1 auto;" [ngStyle]="{display:isMobile()}">Application > LaVie 5 (LDB)
+        </div>
+        <div><i class="material-icons" [ngStyle]="{display:isMobile()}">save</i></div>
+        <div><i class="material-icons" [ngStyle]="{display:isMobile()}">swap_horiz</i></div>
+        <div><i class="material-icons" [ngStyle]="{display:isMobile()}">note_add</i></div>
     </mat-toolbar-row>
 </mat-toolbar>

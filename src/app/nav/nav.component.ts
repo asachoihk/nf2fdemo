@@ -10,28 +10,35 @@ export class NavComponent implements OnInit {
   navs = [
     {
       name: 'Basic information',
-      path: '/'
+      path: '/',
+      icon: 'check_circle'
     },
     {
       name: 'Agreement',
-      path: '/'
+      path: '/',
+      icon: 'check_circle'
     },
     {
       name: 'Disclosure',
-      path: '/'
+      path: '/',
+      icon: 'check_circle'
     },
     {
       name: 'Supporting Documents',
-      path: '/doc'
+      path: '/doc',
+      icon: 'panorama_fish_eye'
     }, {
       name: 'Signature',
-      path: '/sign'
+      path: '/sign',
+      icon: 'panorama_fish_eye'
     }, {
       name: 'Payment Details',
-      path: '/pay'
+      path: '/pay',
+      icon: 'panorama_fish_eye'
     }, {
       name: 'Submission',
-      path: '/'
+      path: '/',
+      icon: 'panorama_fish_eye'
     },    
   ]
 

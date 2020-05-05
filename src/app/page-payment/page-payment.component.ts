@@ -11,7 +11,7 @@ export class PagePaymentComponent implements OnInit {
   paid = false;
   tid = '';
 
-  constructor(private ss: SessionctrlService) { 
+  constructor(protected ss: SessionctrlService) { 
     this.ss.getSocket().on("dataFromServer", data => {
       console.log({
         data
@@ -21,6 +21,10 @@ export class PagePaymentComponent implements OnInit {
         this.tid = data.paid;
       }
     })
+  }
+
+  getSocket() {
+    return this.ss;
   }
 
   pay() {

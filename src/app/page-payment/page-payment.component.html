@@ -1,6 +1,6 @@
 <h2>Payment</h2>
 <div style="display:flex; padding: 8px;flex-wrap: wrap-reverse;">
-    <div class="row" *ngIf="ss.clientMode">
+    <div class="row" *ngIf="getSocket().clientMode">
         <div class="col-75" *ngIf="paid">
             Thank you for your payment, your transaction id is: {{tid}}
 
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="!ss.clientMode">
+    <div *ngIf="!getSocket().clientMode">
         {{!tid?'Wait for your customer to complete the payment':'Paymend completed, transaction id: ' + tid}}
     </div>
 

@@ -51,6 +51,10 @@ export class PageFileComponent implements OnInit {
   download(url) {
     window.open(url, '_blank')
   }
+
+  isMobile() {
+    return window.innerWidth < 1024 ? 'none': 'block';
+  }
   uploadFile(event, index) {
     
     const file = event.target.files[0];

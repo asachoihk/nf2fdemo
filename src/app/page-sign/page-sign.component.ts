@@ -10,7 +10,7 @@ import { SessionctrlService } from '../sessionctrl.service';
 })
 export class PageSignComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private ss: SessionctrlService, ) {
+  constructor(public dialog: MatDialog, protected ss: SessionctrlService, ) {
 
   }
 
