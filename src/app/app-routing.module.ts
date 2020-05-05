@@ -8,12 +8,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-
+import { HomeComponent } from './home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SignatureComponent } from './comps/signature/signature.component';
+import { SignaturePadModule } from "angular2-signaturepad";
+import { MatStepperModule } from '@angular/material/stepper';
 const routes: Routes = [
-  { path: '', component: PageFileComponent },
+  { path: '', component: HomeComponent },
   { path: 'doc', component: PageFileComponent },
 
   { path: 'pay', component: PagePaymentComponent },
@@ -23,19 +27,26 @@ const routes: Routes = [
   declarations: [
     PageSignComponent,
     PageFileComponent,
-    PagePaymentComponent
+    PagePaymentComponent,
+    HomeComponent
+    ,
+    SignatureComponent
   ],
   imports: [RouterModule.forRoot(routes),
+    MatStepperModule,
     CommonModule,
     MatToolbarModule,
     MatGridListModule,
+    MatDialogModule,
     MatSidenavModule,
     MatIconModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    SignaturePadModule,
     MatButtonModule,],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  entryComponents: [SignatureComponent]
 })
 export class AppRoutingModule { }

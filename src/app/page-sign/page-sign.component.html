@@ -1,1 +1,15 @@
-<p>page-sign works!</p>
+<h2>Signatures</h2>
+<div style="display:flex; padding: 8px;flex-wrap: wrap-reverse;">
+
+    <div style="display:flex;padding: 10px;margin: 10px; flex-wrap: wrap;">
+
+        <div style=" padding: 10px; ">
+            <canvas id="insured" (click)="openDialog('insured')"></canvas>
+            <h3>Insured</h3>
+        </div>
+        <div style=" padding: 10px ">
+            <canvas id="agent" (click)="openDialog('agent')"></canvas>
+            <h3>Agent</h3>
+        </div>
+    </div>
+</div>

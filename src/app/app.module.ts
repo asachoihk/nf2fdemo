@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SignaturePadModule } from "angular2-signaturepad";
+
 
 import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
 import { FormsModule } from "@angular/forms";
@@ -23,6 +23,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
+ 
+
 
 const config: SocketIoConfig = {
   url: "https://xgom8.sse.codesandbox.io/",
@@ -34,8 +36,7 @@ const config: SocketIoConfig = {
   declarations: [
     AppComponent,
     HeaderComponent,
-    NavComponent,
-
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,7 @@ const config: SocketIoConfig = {
     BrowserModule,
     FormsModule,
     SocketIoModule.forRoot(config),
-    SignaturePadModule,
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     NgxPayPalModule,
@@ -55,6 +56,8 @@ const config: SocketIoConfig = {
     FlexLayoutModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [ ]
 })
 export class AppModule { }

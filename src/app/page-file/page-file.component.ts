@@ -15,15 +15,18 @@ export class PageFileComponent implements OnInit {
   docs = [
     {
       name: 'Identification docuement',
-      url: ''
+      url: '',
+      uploading: false
     },
     {
       name: 'Provisional receipt',
-      url: ''
+      url: '',
+      uploading: false
     },
     {
       name: 'FATCA form',
-      url: ''
+      url: '',
+      uploading: false
     }];
 
 
@@ -44,19 +47,12 @@ export class PageFileComponent implements OnInit {
     })
   }
 
-  connect() {
-    const roomid = this.ss.connect();
-    console.log({ roomid })
 
-    const message = `Share following url to you customer:  ${window.location.href}#${roomid}&customer=1`;
-    const action = "done"
-    this._snackBar.open(message, action, {
-      duration: 10000,
-      verticalPosition: 'top'
-    });
+  download(url) {
+    window.open(url, '_blank')
   }
-
   uploadFile(event, index) {
+    
     const file = event.target.files[0];
     const filePath = "123456";
     const fileRef = this.storage.ref(filePath);
@@ -65,8 +61,10 @@ export class PageFileComponent implements OnInit {
     this.uploadPercent[index] = task.percentageChanges();
     this.downloadURL[index] = fileRef.getDownloadURL();
 
+    this.docs[index].uploading = true;
 
     fileRef.getDownloadURL().subscribe(url => {
+      this.docs[index].url = url;
       const data = {
         "docupload": {
           index,

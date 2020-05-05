@@ -1,0 +1,14 @@
+<div *ngIf="!ss.clientMode">
+    <section>
+        <br />
+        <button mat-raised-button color="primary" (click)="connect()">Start the non face to face session with
+            customer</button>
+    </section>
+    <section>
+        <br />
+        <button mat-raised-button color="primary" (click)="start()">Start demo server</button>
+    </section>
+</div>
+<div *ngIf="ss.clientMode">
+    Your agent will guide you
+</div>
