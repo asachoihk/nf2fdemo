@@ -14,7 +14,6 @@ export class AppComponent {
 
   toogleMenu(d) {
     this.menuOpened = d;
-
   }
 
   constructor(private ss: SessionctrlService, private route: ActivatedRoute, private router: Router) {
@@ -23,20 +22,16 @@ export class AppComponent {
       const roomid = document.location.hash.replace("#", "").replace("&customer=1","");
       this.menuOpened = false;
       this.ss.joinRoom(roomid);
+      this.ss.clientMode = true;      
     } 
     this.ss.getSocket().on("dataFromServer", data => {
       if(data.control) {
         console.log(data.control)
-        this.router.navigate(['/' + data.control]);
-
+        this.router.navigate([data.control]);
       }
-
     })
+ 
 
   }
-  nav(section) {
-    this.ss.send({
-      control: section
-    })
-  }
+
 }

@@ -1,32 +1,32 @@
-<div style="display:flex; padding: 10px;flex-wrap: wrap-reverse;">
-    <div style="flex: 2;padding: 10px;">
+<div style="display:flex; padding: 8px;flex-wrap: wrap-reverse;">
+    <div style="flex: 1;padding: 10px;">
         <h2>Upload Document</h2>
         <div>
             Please upload an image of your document. Minimum 1 image and maximum 10 images  for each document.
         </div>
         <div>
-            <section>
-                <br/>
+            <section *ngIf="!ss.clientMode">
+                <br />
                 <button mat-raised-button color="primary" (click)="connect()">Start the non face to face session with
                     customer</button>
             </section>
         </div>
     </div>
     <div style="flex:1">
-        <div>
-            <div>
-                <h3>Identification document</h3>
-                <div><input type="file" /></div>
+        <section>
+            <div *ngFor="let d of docs; let i = index;">
+                <h3>{{d.name}}</h3>
+                <div>
+                    <input type="file" (change)="uploadFile($event, i)" />
+                    <div>{{ uploadPercent[i] | async }}</div>
+                    <a [href]="downloadURL | async">{{ downloadURL[i] | async }}</a>
+                    <div *ngIf="docs[i].url">
+                        
+                        <img class="thumbnail" [src]="docs[i].url">
+                    </div>
+                </div>
             </div>
-            <div>
-                <h3>Provisional receeipt</h3>
-                <div><input type="file" /></div>
-            </div>
-            <div>
-                <h3>FATCA form</h3>
-                <div><input type="file" /></div>
-            </div>
-        </div>
+        </section>
     </div>
 
 </div>

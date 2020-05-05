@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SessionctrlService } from '../sessionctrl.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -7,9 +7,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  navs = [
+    {
+      name: 'Basic information',
+      path: '/'
+    },
+    {
+      name: 'Agreement',
+      path: '/'
+    },
+    {
+      name: 'Disclosure',
+      path: '/'
+    },
+    {
+      name: 'Supporting Documents',
+      path: '/doc'
+    }, {
+      name: 'Signature',
+      path: '/sign'
+    }, {
+      name: 'Payment Details',
+      path: '/pay'
+    }, {
+      name: 'Submission',
+      path: '/'
+    },    
+  ]
+
+
+  
+  constructor(private ss: SessionctrlService, ) { }
 
   ngOnInit() {
   }
-
+  nav(section) {
+    console.log(section)
+    this.ss.send({
+      control: section
+    })
+  }
 }

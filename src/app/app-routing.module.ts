@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common'; 
 import { PageSignComponent } from './page-sign/page-sign.component';
 import { PageFileComponent } from './page-file/page-file.component';
 import { PagePaymentComponent } from './page-payment/page-payment.component';
@@ -26,6 +26,7 @@ const routes: Routes = [
     PagePaymentComponent
   ],
   imports: [RouterModule.forRoot(routes),
+    CommonModule,
     MatToolbarModule,
     MatGridListModule,
     MatSidenavModule,

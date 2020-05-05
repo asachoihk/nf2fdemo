@@ -6,7 +6,7 @@ import * as uuid from "uuid";
   providedIn: 'root'
 })
 export class SessionctrlService {
-
+  clientMode = false;
   constructor(private socket: Socket
   ) { }
 
