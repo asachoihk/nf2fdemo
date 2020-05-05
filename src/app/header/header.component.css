@@ -1,0 +1,14 @@
+mat-toolbar {
+    width: 100%;
+}
+
+mat-toolbar div {
+    height: 60px;
+    min-width: 60px;
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+      display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}

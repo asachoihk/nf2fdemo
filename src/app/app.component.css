@@ -1,0 +1,43 @@
+mat-drawer  {
+    flex: 1;
+    background-color: white;
+    padding: 0px;
+  list-style-position:inside;
+  border: 0.1px dashed gray       
+}
+
+mat-toolbar {
+    background-color: white;
+    color: black;
+    padding: 0px;
+    margin: 0px;
+    height: 60px;
+    width: 100%;
+    border: 0.1px dashed gray  
+}
+header{ 
+    width: 100%
+}
+
+mat-card {
+    background-color: white;
+    color: black
+}
+
+
+:host {
+    display:flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+
+
+mat-drawer-container  {
+    height: 100%;
+    background-color: white;
+    color: black; 
+    display: flex;
+}
+
+
