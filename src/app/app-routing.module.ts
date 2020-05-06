@@ -16,6 +16,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SignatureComponent } from './comps/signature/signature.component';
 import { SignaturePadModule } from "angular2-signaturepad";
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'doc', component: PageFileComponent },
@@ -45,6 +48,8 @@ const routes: Routes = [
     MatIconModule,
     MatCardModule,
     SignaturePadModule,
+    MatDividerModule,
+    MatListModule ,
     MatButtonModule,],
   exports: [RouterModule],
   entryComponents: [SignatureComponent]
