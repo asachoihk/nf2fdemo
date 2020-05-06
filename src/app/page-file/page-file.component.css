@@ -1,5 +1,11 @@
  .thumbnail {
-     width: 200px;
+ 
+ }
+
+ .add {
+     position: relative;
+     top: 40px;
+     
  }
 
  input[type="file"] {
@@ -7,17 +13,22 @@
 }
 
 .custom-file-upload{ 
-
     border: dashed black 1px;
-    height: 20px;
-    width: 20px;    
+    height: 100px;
+    width: 120px;     
     font-weight: bold;
     display: block;
     text-align: center;
-    padding: 40px;   
  
-    color: red
- 
+    color: red; 
 }
+ img {
+    border: dashed black 1px;
+    height: 100px;
+    width: 120px;    
+    position: relative;
+    top: -30px;
+
+ }
 
  
