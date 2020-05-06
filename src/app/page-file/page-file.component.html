@@ -12,7 +12,10 @@
             <div *ngFor="let d of docs; let i = index;">
                 <h3>{{d.name}}</h3>
                 <div>
-                    <input type="file" (change)="uploadFile($event, i)" />
+                    <label [for]="'file' + i" class="custom-file-upload">
+                        <mat-icon>add_circle</mat-icon>
+                    </label>
+                    <input type="file" (change)="uploadFile($event, i)" [id]="'file' + i"/>
                     <div *ngIf="docs[i].uploading">{{ uploadPercent[i] | async | number: '1.0-0' }}% uploaded</div>
 
                     <div *ngIf="docs[i].url">

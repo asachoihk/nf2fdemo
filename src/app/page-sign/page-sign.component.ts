@@ -9,6 +9,10 @@ import { SessionctrlService } from '../sessionctrl.service';
   styleUrls: ['./page-sign.component.css']
 })
 export class PageSignComponent implements OnInit {
+  signs = {
+    insured: false,
+    agent: false
+  }
 
   constructor(public dialog: MatDialog, protected ss: SessionctrlService, ) {
 
@@ -34,21 +38,18 @@ export class PageSignComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
       console.log({ result })
       this.loadImage(result.id, result.sign)
       this.ss.send({
         signature: result
       })
-
-
-
     });
   }
   loadImage(id, data) {
     var myCanvas :any = document.getElementById(id);
     var ctx = myCanvas.getContext('2d');
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    this.signs[id] = true;
     
     var img = new Image;
     img.onload = function () {

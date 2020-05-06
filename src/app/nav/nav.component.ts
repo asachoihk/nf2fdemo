@@ -8,7 +8,7 @@ import { SessionctrlService } from '../sessionctrl.service';
 export class NavComponent implements OnInit {
 
   navs = [
-    {
+    /*{
       name: 'Basic information',
       path: '/',
       icon: 'check_circle'
@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
       name: 'Agreement',
       path: '/',
       icon: 'check_circle'
-    },
+    },*/
     {
       name: 'Disclosure',
       path: '/',

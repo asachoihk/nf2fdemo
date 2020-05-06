@@ -12,21 +12,37 @@
     <mat-list-item><span class="material-icons">
             description
         </span>
-    <button mat-flat-button>Application Form</button>
-</mat-list-item>
+        <button mat-flat-button>Application Form</button>
+    </mat-list-item>
 </mat-list>
 
 <div style="display:flex; padding: 8px;flex-wrap: wrap-reverse;">
 
     <div style="display:flex;padding: 10px;margin: 10px; flex-wrap: wrap;">
-
-        <div style=" padding: 10px; ">
-            <canvas id="insured" (click)="openDialog('insured')"></canvas>
-            <h3>Insured</h3>
+        <div style="width:100%">
+            <h4>Click box to sign</h4>
         </div>
-        <div style=" padding: 10px ">
-            <canvas id="agent" (click)="openDialog('agent')"></canvas>
-            <h3>Agent</h3>
+        <div style=" padding: 10px; border: dashed 1px ">
+            <h3>Policy owner & insured</h3>
+            <h2>Peter Chan</h2>
+            <canvas id="insured" (click)="openDialog('insured')"
+                [ngStyle]="{'background-color': signs.insured?'white':'gray'}"></canvas>
+            <div [ngStyle]="{'display': signs.insured?'':'none'}"  class="verify">
+                <span class="material-icons" style="color:green">
+                    check_circle
+                </span>Signed
+            </div>
+        </div>
+        <div style=" padding: 10px; border: dashed 1px">
+            <h3>Financial Advisor</h3>
+            <h2>Juan Dela Cruz</h2>
+            <canvas id="agent" (click)="openDialog('agent')"
+                [ngStyle]="{'background-color': signs.agent?'white':'gray'}"  class="verify"></canvas>
+            <div [ngStyle]="{'display': signs.agent?'':'none'}">
+                <span class="material-icons" style="color:green">
+                    check_circle
+                </span>Signed
+            </div>
         </div>
     </div>
 </div>
