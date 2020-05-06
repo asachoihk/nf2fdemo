@@ -11,7 +11,7 @@ export const environment = {
     appId: "1:528250453809:web:b544d8a28a6dd5fe58fa10"
   },
   socketConfig: {
-    url: "https://45f9x.sse.codesandbox.io/",
+    url: "https://shrouded-meadow-93192.herokuapp.com/",
     options: {}
   }
 };
