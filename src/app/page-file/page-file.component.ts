@@ -64,21 +64,37 @@ export class PageFileComponent implements OnInit {
     // observe percentage changes
     this.uploadPercent[index] = task.percentageChanges();
     this.downloadURL[index] = fileRef.getDownloadURL();
+    let tempurl = ''
 
     this.docs[index].uploading = true;
 
+    task.percentageChanges().subscribe(x => {
+      if(x==100) {
+        setTimeout(() => {
+        let url = tempurl;
+
+        this.docs[index].url = url;
+        const data = {
+          "docupload": {
+            index,
+            url
+          }
+        };
+        console.log(
+          { data }
+        )
+        this.ss.getSocket().emit("dataToServer", data);
+        }, 1000);
+      }
+    })
+
+
+
+
+
     fileRef.getDownloadURL().subscribe(url => {
-      this.docs[index].url = url;
-      const data = {
-        "docupload": {
-          index,
-          url
-        }
-      };
-      console.log(
-        { data }
-      )
-      this.ss.getSocket().emit("dataToServer", data);
+      tempurl = url;
+
     });
 
 
