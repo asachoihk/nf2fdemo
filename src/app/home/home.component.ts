@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 
+  url;
+
   constructor(protected ss: SessionctrlService,
     private _snackBar: MatSnackBar, ) { }
 
@@ -37,6 +39,7 @@ export class HomeComponent implements OnInit {
       verticalPosition: 'bottom'
     }).onAction().subscribe(() => {
       window.open(`${window.location.href}#${roomid}&customer=1`, '_blank');
+      this.url = `${window.location.href}#${roomid}&customer=1`;
     });
   }
 

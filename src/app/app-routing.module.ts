@@ -19,6 +19,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'doc', component: PageFileComponent },
@@ -50,7 +52,7 @@ const routes: Routes = [
     SignaturePadModule,
     MatDividerModule,
     MatListModule ,
-    MatButtonModule,],
+    MatButtonModule, QRCodeModule,],
   exports: [RouterModule],
   entryComponents: [SignatureComponent]
 })
