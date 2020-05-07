@@ -10,7 +10,7 @@ li {
   padding-left: 30px;
   
   list-style-position:inside;
-  border: 0.1px dashed gray
+  border: 0.1px solid gray
 }
 a {
   text-decoration: none;

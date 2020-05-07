@@ -9,13 +9,15 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
   styleUrls: ['./signature.component.css']
 })
 export class SignatureComponent {
-  @ViewChild(SignaturePad, {static: true}) signaturePad: SignaturePad;
+  @ViewChild(SignaturePad, { static: true }) signaturePad: SignaturePad;
 
 
   public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
     'minWidth': 5,
     'canvasWidth': 400,
-    'canvasHeight': 300
+    'canvasHeight': 220,
+    'backgroundColor': '#f0f0f0'
+
   };
 
 
@@ -24,16 +26,20 @@ export class SignatureComponent {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
 
+  resign() {
+    this.signaturePad.clear();
+
+  }
   drawComplete() {
-   
+
   }
 
   drawStart() {
- 
+
   }
 
   done(): void {
- 
+
     this.dialogRef.close({
       id: this.data.id,
       sign: this.signaturePad.toDataURL()

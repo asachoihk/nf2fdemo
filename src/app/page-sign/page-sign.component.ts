@@ -30,11 +30,11 @@ export class PageSignComponent implements OnInit {
     })
   }
 
-  openDialog(id): void {
+  openDialog(id, name, title): void {
     const dialogRef = this.dialog.open(SignatureComponent, {
       width: '450px',
       height: '400px',
-      data: { id }
+      data: { id, name, title }
     });
 
     dialogRef.afterClosed().subscribe(result => {
