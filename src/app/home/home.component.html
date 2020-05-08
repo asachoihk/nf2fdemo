@@ -17,7 +17,7 @@
             <button mat-raised-button color="primary" (click)="connect()">Start the non face to face session with
                 customer</button>
 
-            <qrcode [qrdata]="url" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+            <qrcode *ngIf="url" [qrdata]="url" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
  
         </mat-card-actions>
     </mat-card>

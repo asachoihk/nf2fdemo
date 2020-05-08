@@ -15,17 +15,17 @@ export class PageFileComponent implements OnInit {
   docs = [
     {
       name: 'Identification docuement',
-      url: '',
+      urls: [],
       uploading: false
     },
     {
       name: 'Provisional receipt',
-      url: '',
+      urls: [],
       uploading: false
     },
     {
       name: 'FATCA form',
-      url: '',
+      urls: [],
       uploading: false
     }];
 
@@ -41,7 +41,8 @@ export class PageFileComponent implements OnInit {
     this.ss.getSocket().on("dataFromServer", data => {
       if (data.docupload) {
         console.log(data.docupload);
-        this.docs[data.docupload.index].url = data.docupload.url;
+        this.docs[data.docupload.index].urls = data.docupload.urls;
+
 
       }
     })
@@ -53,14 +54,53 @@ export class PageFileComponent implements OnInit {
   }
 
   isMobile() {
-    return window.innerWidth < 1024 ? 'none': 'block';
+    return window.innerWidth < 1024 ? 'none' : 'block';
   }
+
   uploadFile(event, index) {
-    
+    //Get file
+    var file = event.target.files[0];
+    //Create a storage ref
+    var fileRef = this.storage.ref('/tempfile/' + file.name);
+    //Upload file
+    const task = fileRef.put(file);
+
+    this.uploadPercent[index] = task.percentageChanges();
+   
+    this.docs[index].uploading = true;
+
+
+    task.then(ss => {
+     // this.docs[index].urls.push(x.downloadURL);
+      fileRef.getDownloadURL().subscribe(url => {
+        this.docs[index].urls.push(url);
+        this.docs[index].uploading = false;
+        const data = {
+          "docupload": {
+            index,
+            urls: this.docs[index].urls
+          }
+        };
+
+        this.ss.getSocket().emit("dataToServer", data);
+      })
+      
+    })
+
+
+  }
+  uploadFile2(event, index) {
+
+    const fileid: string = 'file' + index;
+
     const file = event.target.files[0];
-    const filePath = "123456";
-    const fileRef = this.storage.ref(filePath);
+    const filePath = '/tempfile/1234';
+
+    const fileRef = this.storage.ref(filePath)
+    fileRef.put(file);
+    
     const task = this.storage.upload(filePath, file);
+    
     // observe percentage changes
     this.uploadPercent[index] = task.percentageChanges();
     this.downloadURL[index] = fileRef.getDownloadURL();
@@ -69,21 +109,23 @@ export class PageFileComponent implements OnInit {
     this.docs[index].uploading = true;
 
     task.percentageChanges().subscribe(x => {
-      if(x==100) {
+      if (x == 100) {
         setTimeout(() => {
-        let url = tempurl;
+          let url = tempurl;
 
-        this.docs[index].url = url;
-        const data = {
-          "docupload": {
-            index,
-            url
-          }
-        };
-        console.log(
-          { data }
-        )
-        this.ss.getSocket().emit("dataToServer", data);
+          this.docs[index].urls.push(url);
+          this.docs[index].uploading = false;
+          const data = {
+            "docupload": {
+              index,
+              urls: this.docs[index].urls
+            }
+          };
+          console.log(
+            { data }
+          )
+          this.ss.getSocket().emit("dataToServer", data);
+
         }, 1000);
       }
     })

@@ -11,16 +11,18 @@
         <section>
             <div *ngFor="let d of docs; let i = index;">
                 <h3>{{d.name}}</h3>
-                <div>
+                <div style="display:flex">
                     <label [for]="'file' + i" class="custom-file-upload">
                         <mat-icon class="add">add_circle</mat-icon>
-<div *ngIf="docs[i].url">
-    <img class="thumbnail" [src]="docs[i].url" (click)="download(docs[i].url)">
-</div>
+                        <div *ngIf="docs[i].uploading">{{ uploadPercent[i] | async | number: '1.0-0' }}% uploaded</div>
+
                     </label>
                     <input type="file" (change)="uploadFile($event, i)" [id]="'file' + i"/>
-                    <div *ngIf="docs[i].uploading">{{ uploadPercent[i] | async | number: '1.0-0' }}% uploaded</div>
+                    <div *ngFor="let u of docs[i].urls" >
 
+                        <img class="thumbnail" [src]="u" (click)="download(u)">
+                    </div>
+                    
                 </div>
             </div>
         </section>
