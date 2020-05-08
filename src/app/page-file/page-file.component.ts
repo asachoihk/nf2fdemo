@@ -89,59 +89,5 @@ export class PageFileComponent implements OnInit {
 
 
   }
-  uploadFile2(event, index) {
-
-    const fileid: string = 'file' + index;
-
-    const file = event.target.files[0];
-    const filePath = '/tempfile/1234';
-
-    const fileRef = this.storage.ref(filePath)
-    fileRef.put(file);
-    
-    const task = this.storage.upload(filePath, file);
-    
-    // observe percentage changes
-    this.uploadPercent[index] = task.percentageChanges();
-    this.downloadURL[index] = fileRef.getDownloadURL();
-    let tempurl = ''
-
-    this.docs[index].uploading = true;
-
-    task.percentageChanges().subscribe(x => {
-      if (x == 100) {
-        setTimeout(() => {
-          let url = tempurl;
-
-          this.docs[index].urls.push(url);
-          this.docs[index].uploading = false;
-          const data = {
-            "docupload": {
-              index,
-              urls: this.docs[index].urls
-            }
-          };
-          console.log(
-            { data }
-          )
-          this.ss.getSocket().emit("dataToServer", data);
-
-        }, 1000);
-      }
-    })
-
-
-
-
-
-    fileRef.getDownloadURL().subscribe(url => {
-      tempurl = url;
-
-    });
-
-
-
-
-  }
 
 }

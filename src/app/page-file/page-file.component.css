@@ -1,5 +1,10 @@
- .thumbnail {
- 
+ .ico {
+    padding-top: 40px;
+ }
+
+ .progress {
+     padding-top: 0px;
+     color:gray;
  }
 
  .add {
@@ -26,8 +31,6 @@
     border: dashed black 1px;
     height: 100px;
     width: 120px;    
-
-
  }
 
  
