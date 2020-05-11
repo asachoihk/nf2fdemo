@@ -27,7 +27,7 @@
             <h2>Peter Chan</h2>
             <canvas id="insured" (click)="openDialog('insured', 'Peter Chan', 'Proposed Insured/Owner')"
                 [ngStyle]="{'background-color': signs.insured?'white':'gray'}"></canvas>
-            <div [ngStyle]="{'display': signs.insured?'':'none'}"  class="verify">
+            <div [ngStyle]="{'display': signs.insured?'':'none'}" class="verify">
                 <span class="material-icons" style="color:#00A758">
                     check_circle
                 </span>Signed
@@ -37,7 +37,7 @@
             <h3>Financial Advisor</h3>
             <h2>Juan Dela Cruz</h2>
             <canvas id="agent" (click)="openDialog('agent', 'Juan Dela Cruz', 'Financial Advisor')"
-                [ngStyle]="{'background-color': signs.agent?'white':'gray'}"  class="verify"></canvas>
+                [ngStyle]="{'background-color': signs.agent?'white':'gray'}" class="verify"></canvas>
             <div [ngStyle]="{'display': signs.agent?'':'none'}">
                 <span class="material-icons" style="color:#00A758">
                     check_circle
@@ -45,4 +45,15 @@
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="!ss.getSocket().clientMode">
+    <h2>Agent Questions (only be visible in agent view)</h2>
+    <div style="padding: 20px;">
+    
+        <h3>Reasons of recommending the products</h3>
+
+        <textarea matInput placeholder=""></textarea>
+    
+    <div>
+    
 </div>

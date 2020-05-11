@@ -7,7 +7,7 @@ import { PagePaymentComponent } from './page-payment/page-payment.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HomeComponent } from './home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -42,6 +42,7 @@ const routes: Routes = [
     CommonModule,
     MatToolbarModule,
     MatGridListModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatSidenavModule,
     MatIconModule,

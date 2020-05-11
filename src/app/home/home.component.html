@@ -18,10 +18,12 @@
                 customer</button>
 
             <qrcode *ngIf="url" [qrdata]="url" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+            <button *ngIf="url" mat-raised-button color="primary" (click)="close()">Close Session</button>
  
         </mat-card-actions>
     </mat-card>
 </div>
-<div *ngIf="getSocket().clientMode">
+<div *ngIf="getSocket().clientMode">    
+
     Your agent will guide you
 </div>

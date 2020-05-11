@@ -14,7 +14,7 @@ export class PageFileComponent implements OnInit {
   downloadURL: Observable<Array<string[]>> = new Observable<Array<string[]>>();
   docs = [
     {
-      name: 'Identification docuement',
+      name: 'Identification documents',
       urls: [],
       uploading: false
     },

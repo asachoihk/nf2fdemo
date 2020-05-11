@@ -17,11 +17,32 @@ export class SessionctrlService {
   connect() {
     const roomid = uuid.v4();
     this.socket.connect();
-    this.joinRoom(roomid);
+    this.createRoom(roomid);
     return roomid;
   }
+
+  createRoom(roomid) {
+    this.socket.emit("create", roomid);
+  }
+
   joinRoom(roomid) {
-    this.socket.emit("join", roomid);
+    this.socket.on("checkroomresult", r=>{
+      console.log({
+        checkroomresult: r
+        , roomid
+      }     
+      );
+      if(r) {
+        this.socket.emit("join", roomid);      
+      }
+    })
+    this.socket.emit("checkroom", roomid);
+    
+  }
+ 
+
+  close(roomid) {
+    this.socket.emit("close", roomid);
   }
   send(data) {
     this.socket.emit("dataToServer", data);
@@ -29,4 +50,5 @@ export class SessionctrlService {
   getSocket() {
     return this.socket;
   }
+
 }

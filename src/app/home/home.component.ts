@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit {
 
   url;
+  roomid = '';
 
   constructor(protected ss: SessionctrlService,
     private _snackBar: MatSnackBar, ) { }
@@ -22,15 +23,21 @@ export class HomeComponent implements OnInit {
     return this.ss;
   }
 
+  close() {
+    this.ss.close(this.roomid);
+    this.url = '';
+    this.roomid = '';
+  }
+
   connect() {
     const roomid = this.ss.connect();
+    this.roomid = roomid;
     this.ss.getSocket().on("online", data =>{
       this._snackBar.open('someone online', 'ok', {
         duration: 1000,
         verticalPosition: 'bottom'
       }) 
-    })
-    console.log({ roomid })
+    })   
 
     const message = `Share following url to you customer:  ${window.location.href}#${roomid}&customer=1`;
     const action = "Open"
@@ -46,7 +53,10 @@ export class HomeComponent implements OnInit {
   start() {
     const serverUrl = environment.socketConfig.url;
 
-    window.open(serverUrl, '_blank');
+    //window.open(serverUrl, '_blank');
+    window.open(serverUrl, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=4000,height=4000");
   }
+
+  
 
 }

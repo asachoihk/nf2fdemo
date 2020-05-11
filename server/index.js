@@ -14,14 +14,47 @@ const activeCnn = () => {
 };
 
 io.on("connection", socket => {
-  socket.on("disconnect", () => { });
+
+  socket.on("close", roomid => {
+    activeCnn().forEach(c => {
+      c.disconnect(true);
+    });
+  });
+
   socket.on("dataToServer", data => {
     console.log({
       dataToServer: data
     });
     socket.broadcast.in(socket["roomid"]).emit("dataFromServer", data);
   });
+
+  socket.on("checkroom", roomid => {        
+    const result = io.sockets.adapter.rooms[roomid];
+    if (typeof result !== 'undefined')
+      socket.emit("checkroomresult", true);
+    else 
+      socket.emit("checkroomresult", false);
+  });
+
+  socket.on("create", roomid => {
+
+    console.log("Room created");
+    console.log({
+      userjoin: roomid
+    });
+    socket.join(roomid);
+    socket["roomid"] = roomid;
+  });
+
   socket.on("join", roomid => {
+
+    if (!io.sockets.adapter.rooms[roomid]) {
+      console.log("room not exist")
+      return
+    }
+
+
+
     console.log("Room Joined");
     console.log({
       userjoin: roomid
