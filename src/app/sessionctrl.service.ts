@@ -8,6 +8,7 @@ import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 })
 export class SessionctrlService {
   clientMode = false;
+  state = {};
   constructor(private socket: Socket
   ) { }
   getUID() {

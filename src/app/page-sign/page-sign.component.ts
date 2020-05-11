@@ -58,6 +58,9 @@ export class PageSignComponent implements OnInit {
     img.src = data;
 
   }
+  getSocket() {
+    return this.ss;
+  }
 
 
 }

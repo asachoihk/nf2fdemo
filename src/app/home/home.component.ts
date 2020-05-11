@@ -14,7 +14,10 @@ export class HomeComponent implements OnInit {
   roomid = '';
 
   constructor(protected ss: SessionctrlService,
-    private _snackBar: MatSnackBar, ) { }
+    private _snackBar: MatSnackBar, ) {
+    this.url = ss.state['url'];
+    this.roomid = ss.state['roomid'];
+  }
 
   ngOnInit() {
   }
@@ -25,6 +28,7 @@ export class HomeComponent implements OnInit {
 
   close() {
     this.ss.close(this.roomid);
+    this.ss.state = {};
     this.url = '';
     this.roomid = '';
   }
@@ -32,12 +36,12 @@ export class HomeComponent implements OnInit {
   connect() {
     const roomid = this.ss.connect();
     this.roomid = roomid;
-    this.ss.getSocket().on("online", data =>{
+    this.ss.getSocket().on("online", data => {
       this._snackBar.open('someone online', 'ok', {
         duration: 1000,
         verticalPosition: 'bottom'
-      }) 
-    })   
+      })
+    })
 
     const message = `Share following url to you customer:  ${window.location.href}#${roomid}&customer=1`;
     const action = "Open"
@@ -47,6 +51,10 @@ export class HomeComponent implements OnInit {
     }).onAction().subscribe(() => {
       window.open(`${window.location.href}#${roomid}&customer=1`, '_blank');
       this.url = `${window.location.href}#${roomid}&customer=1`;
+      this.ss.state = {
+        url: this.url,
+        roomid: this.roomid
+      }
     });
   }
 
@@ -57,6 +65,6 @@ export class HomeComponent implements OnInit {
     window.open(serverUrl, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=4000,height=4000");
   }
 
-  
+
 
 }

@@ -8,7 +8,7 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'nf2fdemo';
   clientMode = false;
   menuOpened = true;
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     window.close();
 
   }
-  ngOnInit() {
+  constructor(private ss: SessionctrlService, private route: ActivatedRoute, private router: Router) {
     this.clientMode = window.location.hash.includes('customer=1');
     if (this.clientMode) {
       if(prompt('enter password (1234)') != '1234') {
@@ -53,10 +53,6 @@ export class AppComponent implements OnInit {
     })
   }
 
-  constructor(private ss: SessionctrlService, private route: ActivatedRoute, private router: Router) {
-
-
-
-  }
+  
 
 }
