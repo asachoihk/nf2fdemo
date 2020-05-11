@@ -18,14 +18,14 @@ export class AppComponent implements OnInit {
   }
   showerr() {
     console.log('room not exist');
-    confirm('session closed');
+    confirm('wrong password or session closed');
     window.close();
 
   }
   ngOnInit() {
     this.clientMode = window.location.hash.includes('customer=1');
     if (this.clientMode) {
-      if(prompt('enter password') != '1234') {
+      if(prompt('enter password (1234)') != '1234') {
         this.showerr();
       }
       const roomid = document.location.hash.replace("#", "").replace("&customer=1", "");
